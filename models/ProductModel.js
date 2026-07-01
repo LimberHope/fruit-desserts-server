@@ -11,6 +11,9 @@ const ProductModel = db.define('Product', {
     price: {
         type: DataTypes.FLOAT,
     },
+    category: {
+        type: DataTypes.STRING,
+    },
     imgUrl: {
         type: DataTypes.STRING,
     }

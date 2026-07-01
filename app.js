@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import db from "./database/db.js";
 import ProductModel from "./models/ProductModel.js";
-import { getAllProducts } from "./controllers/ProductController.js";
+import { getAllProducts, createProduct, uploadProduct } from "./controllers/ProductController.js";
 
 const app = express();
 config();
@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use("/uploads", express.static("./uploads"));
 app.get("/products", getAllProducts);
+app.post("/products", uploadProduct, createProduct);
 
 try {
     await db.authenticate();
